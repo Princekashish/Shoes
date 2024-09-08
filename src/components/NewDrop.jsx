@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function NewDrop() {
   const newDrop = [
@@ -35,9 +36,9 @@ export default function NewDrop() {
           <h1 className="text-[#232321] text-2xl font-semibold w-[172px] xl:text-[74px] xl:w-[589px]  xl:uppercase xl:leading-[70.30px]">
             Don’t miss out new drops
           </h1>
-          <button className="bg-[#4a69e2]  text-white text-sm font-medium  uppercase tracking-tight px-4 py-2 xl:py-3 xl:px-5 rounded-lg justify-center items-center">
+          <Link to={"./listing"}><button className="bg-[#4a69e2]  text-white text-sm font-medium  uppercase tracking-tight px-4 py-2 xl:py-3 xl:px-5 rounded-lg justify-center items-center">
             Shop new drops
-          </button>
+          </button></Link>
         </div>
 
         {/* listing */}

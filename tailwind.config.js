@@ -8,7 +8,8 @@ export default {
   theme: {
     extend: {
       fontFamily:{
-        Rubik:['Rubik', 'system-ui']
+        Rubik:['Rubik', 'system-ui'],
+        OpenSans:["Open Sans", "sans-serif"],
       }
     },
   },

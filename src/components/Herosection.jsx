@@ -24,8 +24,8 @@ export default function Herosection() {
   return (
     <div className="font-Rubik">
       <div className="p-2 flex flex-col gap-5">
-        <div className="text-[55px] lg:text-[223.50px] tracking-wide leading-none">
-          <h1 className="text-[#232321] font-bold uppercase">
+        <div className="text-[55px] lg:text-[223.50px]  tracking-wide  leading-none">
+          <h1 className="text-[#232321] font-bold uppercase ">
             Do it{" "}
             <span className="text-[#4a69e2] font-bold uppercase">Right</span>{" "}
           </h1>
