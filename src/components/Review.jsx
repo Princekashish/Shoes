@@ -48,18 +48,18 @@ export default function Review() {
         </div>
 
         {/* reviews */}
-        <div className=" lg:hidden ">
+        <div className=" ">
           <Swiper
             modules={[Navigation, Pagination, Scrollbar]}
             spaceBetween={10}
             slidesPerView={1.5}
-            centeredSlides={true}
+            centeredSlides={false}
             breakpoints={{
               0: { slidesPerView: 1.15 },
               400: { slidesPerView: 1.15 },
               639: { slidesPerView: 1.15 },
               865: { slidesPerView: 1.15 },
-              1000: { slidesPerView: 1.15 },
+              1000: { slidesPerView:3 },
               1500: { slidesPerView: 1.15 },
               1700: { slidesPerView: 1.15 },
             }}
@@ -95,8 +95,8 @@ export default function Review() {
                       className="rounded-full h-[46px] w-[47px]"
                     />
                   </div>
-                  <div className="flex justify-start items-center mt-10 gap-5 absolute bottom-0">
-                    <img src={items.image} alt="" className="h-[229px] object-cover" />
+                  <div className="flex justify-start items-center bg-red-400 w-full mt-10 gap-5 absolute bottom-0">
+                    <img src={items.image} alt="" className="h-[229px] xl:w-full object-cover" />
                   </div>
                 </SwiperSlide>
               ))}

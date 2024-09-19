@@ -3,74 +3,22 @@ import React, { useEffect, useState } from "react";
 import { IoFilter } from "react-icons/io5";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { MdKeyboardArrowUp } from "react-icons/md";
+import ScrollTop from "../util/Scrolltop";
+import { Link } from "react-router-dom";
 
 export default function Productlist() {
   const [viewmore, setViewmore] = useState(false);
   const [listing, setListing] = useState([]);
-  const [selectedPrice, setSelectedPrice] = useState(200); // Default value, updated by the user
+  const [selectedPrice, setSelectedPrice] = useState(200);
   const view = () => {
     setViewmore(!viewmore);
   };
-  const productlist = [
-    {
-      img: "https://img.freepik.com/premium-photo/close-up-shot-runners-shoes_1276045-62.jpg?w=1380",
-      Discount: "New",
-      modletitle: "ADIDAS 4DFWD X PARLEY RUNNING SHOES",
-      price: "Rs. 125",
-    },
-    {
-      img: "https://img.freepik.com/premium-photo/close-up-shot-runners-shoes_1276045-62.jpg?w=1380",
-      Discount: "New",
-      modletitle: "ADIDAS 4DFWD X PARLEY RUNNING SHOES",
-      price: "Rs. 125",
-    },
-    {
-      img: "https://img.freepik.com/premium-photo/close-up-shot-runners-shoes_1276045-62.jpg?w=1380",
-      Discount: "New",
-      modletitle: "ADIDAS 4DFWD X PARLEY RUNNING SHOES",
-      price: "Rs. 125",
-    },
-    {
-      img: "https://img.freepik.com/free-photo/pair-trainers_144627-3800.jpg?t=st=1725396322~exp=1725399922~hmac=0c28be2f343d6d5803cdabc7acfc7141e537fec5f145951a0213f9c32e67b929&w=1380",
-      Discount: "25% off",
-      modletitle: "ADIDAS 4DFWD X PARLEY RUNNING SHOES",
-      price: "Rs. 125",
-    },
-    {
-      img: "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/f4448f7f-f2fd-46f1-9e99-aef025acab48/NIKE+AIR+MAX+270+GS.png",
-      Discount: "25% off",
-      modletitle: "ADIDAS 4DFWD X PARLEY RUNNING SHOES",
-      price: "Rs. 125",
-    },
-    {
-      img: "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/f4448f7f-f2fd-46f1-9e99-aef025acab48/NIKE+AIR+MAX+270+GS.png",
-      Discount: "25% off",
-      modletitle: "ADIDAS 4DFWD X PARLEY RUNNING SHOES",
-      price: "Rs. 125",
-    },
-    {
-      img: "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/f4448f7f-f2fd-46f1-9e99-aef025acab48/NIKE+AIR+MAX+270+GS.png",
-      Discount: "25% off",
-      modletitle: "ADIDAS 4DFWD X PARLEY RUNNING SHOES",
-      price: "Rs. 125",
-    },
-    {
-      img: "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/17d79451-f6f2-4b5e-94ee-5c9ba460c2ef/AIR+MAX+DN+OLY.png",
-      Discount: "25% off",
-      modletitle: "ADIDAS 4DFWD X PARLEY RUNNING SHOES",
-      price: "Rs. 125",
-    },
-    {
-      img: "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/17d79451-f6f2-4b5e-94ee-5c9ba460c2ef/AIR+MAX+DN+OLY.png",
-      Discount: "25% off",
-      modletitle: "ADIDAS 4DFWD X PARLEY RUNNING SHOES",
-      price: "Rs. 125",
-    },
-  ];
   useEffect(() => {
     const fetchlist = async () => {
       try {
-        const respon = await axios.get("https://fakestoreapi.com/products");
+        const respon = await axios.get(
+          "https://shoesback.onrender.com/product"
+        );
         setListing(respon.data);
       } catch (error) {
         console.log(error);
@@ -93,6 +41,7 @@ export default function Productlist() {
 
   return (
     <div className="font-Rubik">
+      <ScrollTop />
       <div className="p-2 gap-5">
         <div className="md:hidden">
           <div className="flex justify-center items-center gap-5 p-2">
@@ -355,45 +304,72 @@ export default function Productlist() {
             </div>
           </div>
           {/* listing */}
-          <div className="grid grid-cols-2 gap-4 xl:grid-cols-3 xl:p-2 xl:justify-center mt-2 ">
-            {listing.map((items, i) => (
-              <div
-                key={i}
-                className="flex flex-col justify-start items-start flex-wrap  gap-3 xl:hover:ease-in-out transition "
-              >
-                <div className="xl:w-[318px] xl:h-[350px] p-2 bg-neutral-50 rounded-2xl justify-start  items-start gap-2.5 flex relative">
-                  <img
-                    className=" self-stretch rounded-xl object-contain pointer-events-none"
-                    src={items.image}
-                  />
+          {listing.length == 0 ? (
+            <div className="grid grid-cols-2 gap-4 xl:grid-cols-3 xl:p-2 xl:justify-center mt-2  ">
+              {Array(9)
+                .fill("")
+                .map((items, i) => (
                   <div
-                    className={`px-2 py-1 ${
-                      items.Discount === "New" ? "bg-[#4a69e2]" : "bg-[#ffa52f]"
-                    } rounded-tl-xl rounded-br-[13px] justify-start items-start gap-2.5 flex absolute`}
+                    key={i}
+                    className="flex  bg-[#d5d4d4] rounded-2xl flex-col  animate-pulse   items-start flex-wrap  gap-3 xl:hover:ease-in-out transition "
                   >
-                    <div className="text-white text-xs font-semibold  ">
-                      {items.Discount}
+                    <div className="xl:w-[318px] xl:h-[350px] h-[180px] w-[171px] p-2  rounded-2xl justify-start  items-start gap-2.5 flex relative"></div>
+                    <div className=" flex-col justify-between items-start gap-2 flex  ">
+                      <div className="  flex-col justify-start items-start gap-2.5 flex"></div>
                     </div>
                   </div>
-                </div>
-                <div className=" flex-col justify-between items-start gap-2 flex  ">
-                  <h1 className=" text-[#232321] text-base font-semibold   w-[171px] xl:w-[318px]">
-                    {items.title}
-                  </h1>
-                  <div className="  flex-col justify-start items-start gap-2.5 flex">
-                    <button className="  px-3 py-3 bg-[#232321] rounded-lg justify-center items-center gap-1 flex">
-                      <span className="text-white text-xs font-medium  uppercase tracking-tight">
-                        View Product -{" "}
-                      </span>
-                      <span className="text-[#ffa52f] text-xs font-medium   tracking-tight">
-                        {items.price}
-                      </span>
-                    </button>
+                ))}
+            </div>
+          ) : (
+            <div className="grid grid-cols-2 gap-3 xl:gap-7     xl:grid-cols-3 xl:p-2 xl:justify-center mt-2 ">
+              {listing.map((items) => (
+                <Link to={`/product/${items.id}`} key={items.id}>
+                  <div className="flex flex-col  justify-between h-[320px] xl:h-[490px]  xl:gap-0   items-start flex-wrap  gap-3 xl:hover:ease-in-out transition ">
+                    <div className="flex flex-col justify-center gap-2 flex-wrap">
+                      <div className="xl:w-[318px] xl:h-[350px] h-[180px] p-2 bg-neutral-50 rounded-2xl justify-start  items-start gap-2.5 flex relative">
+                        <img
+                          className=" self-stretch rounded-xl object-cover pointer-events-none"
+                          src={items.imageUrl}
+                        />
+
+                        <div
+                          className={`px-2 py-1 ${
+                            items.Discount === "New"
+                              ? "bg-[#4a69e2]"
+                              : "bg-[#ffa52f]"
+                          } rounded-tl-xl rounded-br-[13px] justify-start items-start gap-2.5 flex absolute`}
+                        >
+                          <div className="text-white text-xs font-semibold  ">
+                            {items.Discount}
+                          </div>
+                        </div>
+                      </div>
+                      <div>
+                        <h1 className=" text-[#232321] xl:text-xl text-base font-semibold  w-[171px] xl:w-[318px]">
+                          {items.brand}
+                        </h1>
+                      </div>
+                      <div>
+                        <h1 className=" text-[#232321] xl:text-lg text-base  w-[171px] xl:w-[318px]">
+                          {items.name}
+                        </h1>
+                      </div>
+                    </div>
+                    <div className="bg-[#232321] w-full text-center py-2 rounded-lg">
+                      <button className="xl:w-[318px]   rounded-lg ">
+                        <span className="text-white text-xs font-medium  uppercase tracking-tight">
+                          View Product -{" "}
+                        </span>
+                        <span className="text-white text-xs font-medium   tracking-tight">
+                          {items.price}
+                        </span>
+                      </button>
+                    </div>
                   </div>
-                </div>
-              </div>
-            ))}
-          </div>
+                </Link>
+              ))}
+            </div>
+          )}
         </div>
         <div>pagination</div>
       </div>
